@@ -1,0 +1,87 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cl_layout_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="com.google.android.material.sidesheet.SideSheetBehavior">
+
+    <!-- Linear Layout for Toolbar -->
+    <LinearLayout
+        android:id="@+id/ll_toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="6dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:elevation="2dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            app:tint="@android:color/black" />
+    </LinearLayout>
+
+    <!-- Linear Layout for CheckBoxes -->
+    <LinearLayout
+        android:id="@+id/ll_checklist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_toolbar">
+
+        <TextView
+            android:id="@+id/tvStates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="States"
+            android:textColor="@android:color/black"
+            android:textSize="20dp" />
+
+        <CheckBox
+            android:id="@+id/chkYetToDo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yet to do"
+            android:textSize="15dp" />
+
+        <CheckBox
+            android:id="@+id/chkInProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="In Progress"
+            android:textSize="15dp" />
+
+        <CheckBox
+            android:id="@+id/chkDone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btnFilterOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/rounded_button"
+            app:backgroundTint="@android:color/darker_gray"
+            android:text="Filter out"
+            android:paddingHorizontal="30dp"
+            android:textAllCaps="false"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

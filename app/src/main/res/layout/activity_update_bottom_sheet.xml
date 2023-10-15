@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bottom_sheet"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Update"
+        android:textColor="@color/homeActivityGreyButton"
+        android:textSize="21dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etvUpdatePassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="New password"
+            android:padding="20dp"
+            android:paddingBottom="20dp" />
+
+        <ImageView
+            android:id="@+id/imgCloseUpdatePassword"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/ic_close"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtErrorUpdatePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnUpdateOnBottomSheet"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/ic_rounded_button"
+        android:clickable="true"
+        android:text="Update"
+        android:textAllCaps="false"
+        android:textColor="@color/whiteSmoke"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/homeActivityGreyButton" />
+</LinearLayout>

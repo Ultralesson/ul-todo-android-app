@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">to-do</string>
+    <string name="quit_login">Do you want to quit Login ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="drawerOpen">Start</string>
+    <string name="drawerClose">End</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

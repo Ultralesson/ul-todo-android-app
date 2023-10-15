@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:gravity="center">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icTodo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:clickable="false"
+            app:shapeAppearanceOverlay="@style/cornerSize10Percent"
+            app:srcCompat="@mipmap/ic_todo"
+            app:strokeColor="@android:color/darker_gray"
+            app:strokeWidth="1.5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/ic_rounded_button"
+            android:clickable="true"
+            android:onClick="onClickRegister"
+            android:text="Register"
+            android:textAllCaps="false"
+            android:textColor="@color/whiteSmoke"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/homeActivityGreyButton" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_rounded_button"
+            android:clickable="true"
+            android:onClick="onClickLogin"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textColor="@color/whiteSmoke"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/homeActivityGreyButton" />
+    </LinearLayout>
+</LinearLayout>

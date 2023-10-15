@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="cornerSize10Percent">
+        <item name="cornerSize">20%</item>
+    </style>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/teal_200</item>
+        <item name="android:textColor">@color/cardview_shadow_end_color</item>
+        <item name="android:textColorHint">@color/design_default_color_error</item>
+    </style>
+
+    <style name="RoundedSearchView" parent="Widget.AppCompat.SearchView">
+        <item name="android:background">@drawable/rounded_button</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
+</resources>
