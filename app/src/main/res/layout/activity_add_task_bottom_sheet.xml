@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="@color/primary"
         android:text="Add new task"
         android:textSize="21dp"
         android:textStyle="bold" />
@@ -194,6 +195,5 @@
         android:text="Add"
         android:textAllCaps="false"
         android:textColor="@color/whiteSmoke"
-        android:textStyle="bold"
-        app:backgroundTint="@color/homeActivityGreyButton" />
+        app:backgroundTint="@color/primary" />
 </LinearLayout>

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Update"
-        android:textColor="@color/homeActivityGreyButton"
+        android:textColor="@color/primary"
         android:textSize="21dp"
         android:textStyle="bold" />
 
@@ -26,6 +26,7 @@
         <EditText
             android:id="@+id/etvUpdatePassword"
             android:layout_width="0dp"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="New password"
@@ -59,6 +60,5 @@
         android:textAllCaps="false"
         android:textColor="@color/whiteSmoke"
         android:textSize="18dp"
-        android:textStyle="bold"
-        app:backgroundTint="@color/homeActivityGreyButton" />
+        app:backgroundTint="@color/primary" />
 </LinearLayout>

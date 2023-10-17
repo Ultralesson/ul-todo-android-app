@@ -38,6 +38,7 @@
                     android:paddingRight="10dp"
                     android:paddingBottom="10dp"
                     android:text="task"
+                    android:textColor="@color/black"
                     android:textSize="13dp"
                     android:textStyle="bold" />
 
@@ -49,6 +50,7 @@
                     android:maxLines="1"
                     android:padding="2dp"
                     android:text="description"
+                    android:textColor="@color/black"
                     android:textSize="10dp"
                     android:textStyle="italic" />
 
@@ -67,6 +69,7 @@
                         android:paddingTop="10dp"
                         android:paddingRight="5dp"
                         android:paddingBottom="10dp"
+                        android:scrollbarTrackHorizontal="@color/primary"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
                 </HorizontalScrollView>
@@ -88,6 +91,7 @@
                     android:maxLines="1"
                     android:padding="2dp"
                     android:text="Yet to start"
+                    android:textColor="@color/black"
                     android:textSize="10dp"
                     android:textStyle="italic" />
 
@@ -134,23 +138,21 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/eleDone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:id="@+id/eleDone"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:visibility="gone">
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_horizontal|center_vertical"
                         android:text="Done"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
-
-
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

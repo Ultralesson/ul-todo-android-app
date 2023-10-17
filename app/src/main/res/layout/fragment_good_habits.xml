@@ -15,6 +15,7 @@
             android:layout_gravity="center"
             android:padding="16dp"
             android:text="Small daily steps, lasting impact."
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <GridView

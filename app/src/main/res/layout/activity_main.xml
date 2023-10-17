@@ -18,10 +18,8 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:clickable="false"
-            app:shapeAppearanceOverlay="@style/cornerSize10Percent"
             app:srcCompat="@mipmap/ic_todo"
-            app:strokeColor="@android:color/darker_gray"
-            app:strokeWidth="1.5dp" />
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -43,8 +41,7 @@
             android:textAllCaps="false"
             android:textColor="@color/whiteSmoke"
             android:textSize="18dp"
-            android:textStyle="bold"
-            app:backgroundTint="@color/homeActivityGreyButton" />
+            app:backgroundTint="@color/primary" />
 
         <Button
             android:id="@+id/btnLogin"
@@ -57,7 +54,6 @@
             android:textAllCaps="false"
             android:textColor="@color/whiteSmoke"
             android:textSize="18dp"
-            android:textStyle="bold"
-            app:backgroundTint="@color/homeActivityGreyButton" />
+            app:backgroundTint="@color/primary" />
     </LinearLayout>
 </LinearLayout>

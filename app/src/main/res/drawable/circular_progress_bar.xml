@@ -11,7 +11,7 @@
         <gradient
             android:centerColor="@color/white"
             android:centerY="0.5"
-            android:endColor="@color/homeActivityGreyButton"
+            android:endColor="@color/primary"
             android:startColor="@color/whiteSmoke"
             android:type="sweep"
             android:useLevel="false" />

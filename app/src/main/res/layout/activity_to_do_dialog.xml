@@ -67,7 +67,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/whiteSmoke"
                 android:textStyle="bold"
-                app:backgroundTint="@color/homeActivityGreyButton" />
+                app:backgroundTint="@color/primary" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

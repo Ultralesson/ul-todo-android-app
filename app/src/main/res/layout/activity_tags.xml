@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="tag"
+        android:textColor="@color/black"
         android:textSize="14dp"
         android:textStyle="italic|bold" />
 
