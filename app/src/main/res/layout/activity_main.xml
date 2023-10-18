@@ -15,7 +15,7 @@
         android:gravity="center">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/icTodo"
+            android:id="@+id/ic_logo"
             android:layout_width="136dp"
             android:layout_height="148dp"
             android:clickable="false"
