@@ -58,6 +58,8 @@ dependencies {
     androidTestImplementation 'org.mockito:mockito-core:4.0.0'
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test:rules:1.4.0'
+
+    // After upgrading targetSdk to 33 Android tests on Android 13 device start to fail to overcome this, we add the following dependency
     androidTestImplementation 'androidx.test:core:1.5.0-alpha02'
 }
 
