@@ -9,7 +9,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_todo"
+        android:icon="@mipmap/ic_logo"
         android:label="to-do-app"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ultodoandroidapp"
@@ -57,7 +57,6 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

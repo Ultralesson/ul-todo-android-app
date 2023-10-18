@@ -10,17 +10,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:orientation="vertical"
         android:layout_weight="1.5"
         android:gravity="center">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icTodo"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="136dp"
+            android:layout_height="148dp"
             android:clickable="false"
-            app:srcCompat="@mipmap/ic_todo"
-            />
+            app:srcCompat="@mipmap/ic_logo" />
+
+        <TextView
+            android:id="@+id/tvAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Todo App"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:textSize="50dp" />
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"

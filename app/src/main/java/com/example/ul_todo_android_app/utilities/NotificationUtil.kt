@@ -32,7 +32,7 @@ class NotificationUtil {
             val builder = NotificationCompat.Builder(context, CHANNEL_ID)
                 .setContentTitle(title)
                 .setContentText(message)
-                .setSmallIcon(R.mipmap.ic_todo)
+                .setSmallIcon(R.mipmap.ic_logo)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .build()
 
