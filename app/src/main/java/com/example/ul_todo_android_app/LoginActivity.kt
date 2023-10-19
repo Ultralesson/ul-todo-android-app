@@ -207,16 +207,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, View.OnFocusCha
 
                                 snackbar.addCallback(object : Snackbar.Callback() {
                                     override fun onDismissed(
-                                        transientBottomBar: Snackbar?,
-                                        event: Int
+                                        transientBottomBar: Snackbar?, event: Int
                                     ) {
                                         if (event == DISMISS_EVENT_TIMEOUT || event == DISMISS_EVENT_SWIPE || event == DISMISS_EVENT_ACTION) {
                                             // Navigating to register screen if email is not registered
-                                            val intent =
-                                                Intent(
-                                                    applicationContext,
-                                                    RegisterActivity::class.java
-                                                )
+                                            val intent = Intent(
+                                                applicationContext, RegisterActivity::class.java
+                                            )
                                             activityResultLauncher.launch(intent)
                                         }
                                     }
@@ -251,13 +248,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, View.OnFocusCha
     // ON FOCUS CHANGE OVERRIDING
     override fun onFocusChange(view: View?, p1: Boolean) {
         when (view?.id) {
-            R.id.etvEmail -> {
-                imgCloseEmail?.visibility = View.VISIBLE
-            }
-
-            R.id.etvPassword -> {
-                imgClosePassword?.visibility = View.VISIBLE
-            }
+            R.id.etvEmail -> imgCloseEmail?.visibility = if (p1) View.VISIBLE else View.GONE
+            R.id.etvPassword -> imgClosePassword?.visibility = if (p1) View.VISIBLE else View.GONE
         }
     }
 }

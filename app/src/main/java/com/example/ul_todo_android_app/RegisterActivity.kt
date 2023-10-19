@@ -255,19 +255,19 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, View.OnFocus
                 val emailValue = getEmailAndPasswordFromTextFields()[0]
                 val passwordValue = getEmailAndPasswordFromTextFields()[1]
 
-                UsersCRUDRepo(applicationContext).insertUser(
-                    UsersEntity(
-                        userEmail = emailValue!!, password = passwordValue!!
-                    )
-                ) { insertStatus ->
-                    if (insertStatus) {
-                        SessionData(applicationContext).saveToSession(
-                            SessionStoreTexts.LOGGED_IN, "true"
+                if (checkEmptyEmailPasswordAndConfirmPasswordErrors()) {
+                    UsersCRUDRepo(applicationContext).insertUser(
+                        UsersEntity(
+                            userEmail = emailValue!!, password = passwordValue!!
                         )
-                        SessionData(applicationContext).saveToSession(
-                            SessionStoreTexts.LOGGED_IN_EMAIL, emailValue
-                        )
-                        if (checkEmptyEmailPasswordAndConfirmPasswordErrors()) {
+                    ) { insertStatus ->
+                        if (insertStatus) {
+                            SessionData(applicationContext).saveToSession(
+                                SessionStoreTexts.LOGGED_IN, "true"
+                            )
+                            SessionData(applicationContext).saveToSession(
+                                SessionStoreTexts.LOGGED_IN_EMAIL, emailValue
+                            )
                             if (!areRegisterCredentialsMatched()) {
                                 Snackbar.make(
                                     view,
@@ -279,11 +279,11 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, View.OnFocus
                                 intent.putExtra("targetActivityClass", ToDoActivity::class.java)
                                 activityResultLauncher.launch(intent)
                             }
+                        } else {
+                            Snackbar.make(
+                                view, "Email is already registered", Snackbar.LENGTH_LONG
+                            ).show()
                         }
-                    } else {
-                        Snackbar.make(
-                            view, "Email is already registered", Snackbar.LENGTH_LONG
-                        ).show()
                     }
                 }
             }
@@ -293,17 +293,10 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, View.OnFocus
     // ON FOCUS CHANGE OVERRIDING
     override fun onFocusChange(view: View?, p1: Boolean) {
         when (view?.id) {
-            R.id.etvEmail -> {
-                imgCloseEmail?.visibility = View.VISIBLE
-            }
-
-            R.id.etvPassword -> {
-                imgClosePassword?.visibility = View.VISIBLE
-            }
-
-            R.id.etvConfirmPassword -> {
-                imgCloseConfirmPassword?.visibility = View.VISIBLE
-            }
+            R.id.etvEmail -> imgCloseEmail?.visibility = if (p1) View.VISIBLE else View.GONE
+            R.id.etvPassword -> imgClosePassword?.visibility = if (p1) View.VISIBLE else View.GONE
+            R.id.etvConfirmPassword -> imgCloseConfirmPassword?.visibility =
+                if (p1) View.VISIBLE else View.GONE
         }
     }
 }
