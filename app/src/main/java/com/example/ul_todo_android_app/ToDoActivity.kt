@@ -168,12 +168,18 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
     private fun drawableComponent() {
         setSupportActionBar(eleToolBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "UL To Do App"
+        supportActionBar?.title = "Your To Do List"
         drawableToggle = ActionBarDrawerToggle(
             this, eleDrawable, R.string.drawerOpen, R.string.drawerClose
         )
         eleDrawable.addDrawerListener(drawableToggle)
         drawableToggle.syncState()
+
+        eleToolBar.navigationContentDescription = "Open Drawer Navigation Menu"
+
+        eleToolBar?.setNavigationOnClickListener {
+            eleDrawable.openDrawer(GravityCompat.START)
+        }
 
         eleNavView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
