@@ -2,6 +2,7 @@ package com.example.ul_todo_android_app
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebSettings
@@ -34,6 +35,11 @@ class SearchOnlineActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_online)
+
+        // Enable WebView debugging
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true)
+        }
 
         toolBar = findViewById(R.id.toolbar)
         searchEngineSpinner = findViewById(R.id.searchEngineSpinner)
