@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.ul_todo_android_app.constants.StaticTexts
+import java.util.regex.Pattern
 
 class SearchOnlineActivity : AppCompatActivity() {
 
@@ -100,22 +101,47 @@ class SearchOnlineActivity : AppCompatActivity() {
         }
 
         searchButton?.setOnClickListener {
-            val selectedSearchEngine = searchEngineSpinner?.selectedItem.toString()
-            val selectedUrl = searchEngineUrls[selectedSearchEngine]
+            // Get the entered URL from the EditText field
+            val enteredUrl = urlEditText?.text.toString().trim()
 
-            // Check if a URL is selected
-            if (selectedUrl != null) {
-                navigateToSearchOnlineActivity(selectedUrl)
+            // Check if the entered URL is valid
+            if (isValidUrl(enteredUrl)) {
+                navigateToSearchOnlineActivity(enteredUrl)
             } else {
-                // Handle the case where no URL is selected
-                Toast.makeText(this, "Please select a search engine", Toast.LENGTH_LONG).show()
+                val selectedSearchEngine = searchEngineSpinner?.selectedItem.toString()
+                val selectedUrl = searchEngineUrls[selectedSearchEngine]
+
+                // Check if a URL is selected from the spinner
+                if (selectedUrl != null) {
+                    navigateToSearchOnlineActivity(selectedUrl)
+                } else {
+                    // Handle the case where no URL is selected
+                    Toast.makeText(
+                        this,
+                        "Please select a search engine or enter a valid URL",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
         }
+    }
+
+    // Function to check if a URL is valid
+    private fun isValidUrl(url: String): Boolean {
+        // Regular expression pattern for a valid URL
+        val urlPattern = Pattern.compile(
+            "^https?://[-\\w]+(\\.\\w[-\\w]*)+(:\\d+)?(/[^.!,?;<>\"'()\\[\\]{}\\s\\x7F-\\xFF]*)*$",
+            Pattern.CASE_INSENSITIVE or Pattern.MULTILINE or Pattern.DOTALL
+        )
+
+        // Check if the provided URL matches the pattern
+        return urlPattern.matcher(url).matches()
     }
 
     private fun navigateToSearchOnlineActivity(url: String) {
         setContentView(R.layout.activity_webview)
         webview = findViewById(R.id.webview)
+        webview?.settings?.javaScriptEnabled = true;
         webviewBackButton = findViewById(R.id.webviewBackButton)
         val webViewClient = WebViewClient()
         webview?.webViewClient = webViewClient
