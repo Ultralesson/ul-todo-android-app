@@ -63,6 +63,7 @@ dependencies {
     androidTestImplementation 'org.mockito:mockito-core:4.0.0'
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test:rules:1.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.4.0'
 
     // Additional Android Test Dependency for Android 13
     androidTestImplementation 'androidx.test:core:1.5.0-alpha02'
