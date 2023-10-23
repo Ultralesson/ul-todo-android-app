@@ -33,6 +33,7 @@ import com.example.ul_todo_android_app.constants.StaticTexts
 import com.example.ul_todo_android_app.database.crud.TasksCRUDRepo
 import com.example.ul_todo_android_app.database.crud.UsersCRUDRepo
 import com.example.ul_todo_android_app.database.entities.TasksEntity
+import com.example.ul_todo_android_app.utilities.CustomToastUtility
 import com.example.ul_todo_android_app.utilities.NotificationUtil
 import com.example.ul_todo_android_app.utilities.SessionData
 import com.example.ul_todo_android_app.utilities.ViewUtilities
@@ -359,7 +360,10 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
             val intent = Intent(applicationContext, MainActivity::class.java)
             activityResultLauncher.launch(intent)
 
-            Toast.makeText(applicationContext, "Logged out", Toast.LENGTH_LONG).show()
+            CustomToastUtility(this).showToast(
+                R.layout.activity_custom_toast,
+                "Logged out"
+            )
         }
 
         btnNo.setOnClickListener {
@@ -509,9 +513,10 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
                         )
                     )
                     dialog.dismiss()
-                    Toast.makeText(
-                        applicationContext, "Task successfully added", Toast.LENGTH_LONG
-                    ).show()
+                    CustomToastUtility(this).showToast(
+                        R.layout.activity_custom_toast,
+                        "Task successfully added"
+                    )
                 } else {
 
                     Log.i("inProgress", taskEntity.toString())
@@ -535,9 +540,10 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
                     Log.i("tags", tags.toString())
 
                     dialog.dismiss()
-                    Toast.makeText(
-                        applicationContext, "Task updated successfully", Toast.LENGTH_LONG
-                    ).show()
+                    CustomToastUtility(this).showToast(
+                        R.layout.activity_custom_toast,
+                        "Task updated successfully"
+                    )
                 }
 
                 loadTasksOnRecyclerView()
@@ -618,9 +624,11 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
                     updatePassword.text.toString()
                 )
 
-                Toast.makeText(
-                    applicationContext, "Successfully updated the password", Toast.LENGTH_LONG
-                ).show()
+
+                CustomToastUtility(this).showToast(
+                    R.layout.activity_custom_toast,
+                    "Successfully updated the password"
+                )
                 dialog.dismiss()
             }
         }

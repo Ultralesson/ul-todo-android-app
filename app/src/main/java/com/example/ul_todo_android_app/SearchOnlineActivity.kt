@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.ul_todo_android_app.constants.StaticTexts
+import com.example.ul_todo_android_app.utilities.CustomToastUtility
 import java.util.regex.Pattern
 
 class SearchOnlineActivity : AppCompatActivity() {
@@ -122,11 +123,10 @@ class SearchOnlineActivity : AppCompatActivity() {
                     navigateToSearchOnlineActivity(selectedUrl)
                 } else {
                     // Handle the case where no URL is selected
-                    Toast.makeText(
-                        this,
-                        "Please select a search engine or enter a valid URL",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    CustomToastUtility(this).showToast(
+                        R.layout.activity_custom_toast,
+                        "Please select a search engine or enter a valid URL"
+                    )
                 }
             }
         }

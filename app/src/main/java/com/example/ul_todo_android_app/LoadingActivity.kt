@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.Toast
 import kotlin.random.Random
 
 class LoadingActivity : AppCompatActivity() {
@@ -37,12 +36,6 @@ class LoadingActivity : AppCompatActivity() {
                     val intent = Intent(this@LoadingActivity, it)
                     startActivity(intent)
                     finish()
-
-                    // Show the Toast message if "dynamicMessage" is not null or empty
-                    if (!dynamicMessage.isNullOrBlank()) {
-                        Toast.makeText(applicationContext, dynamicMessage, Toast.LENGTH_LONG)
-                            .show()
-                    }
                 }
             }
         }.start()
