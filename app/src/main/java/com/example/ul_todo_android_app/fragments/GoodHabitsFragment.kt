@@ -1,20 +1,18 @@
 package com.example.ul_todo_android_app.fragments
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.GridView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.ul_todo_android_app.R
+import com.example.ul_todo_android_app.adapters.GoodHabitsAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
@@ -88,7 +86,6 @@ val goodHabits = listOf(
 
 
 class GoodHabitsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
@@ -107,32 +104,24 @@ class GoodHabitsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_good_habits, container, false)
 
-        val gridView: GridView? = view.findViewById(R.id.gridView)
+        val goodHabitsRecyclerView: RecyclerView? = view.findViewById(R.id.goodHabitsRecyclerView)
+        goodHabitsRecyclerView?.layoutManager = GridLayoutManager(requireContext(), 2)
+
         val adapter = GoodHabitsAdapter(requireContext(), goodHabits)
-        gridView?.adapter = adapter
 
-        gridView?.setOnItemClickListener { parent, view, position, id ->
-            // Get the habit selected
-            val habit = goodHabits[position]
+        // Set the click listener for the adapter
+        adapter.setOnItemClickListener(object : GoodHabitsAdapter.OnItemClickListener {
+            override fun onItemClick(habit: GoodHabit) {
+                showHabitDetailsDialog(habit)
+            }
+        })
 
-            // Show habit details in a dialog
-            showHabitDetailsDialog(habit)
-        }
+        goodHabitsRecyclerView?.adapter = adapter
 
         return view
     }
 
-
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment GoodHabits.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             GoodHabitsFragment().apply {
@@ -161,36 +150,4 @@ class GoodHabitsFragment : Fragment() {
         val dialog = dialogBuilder.create()
         dialog.show()
     }
-
 }
-
-class GoodHabitsAdapter(private val context: Context, private val habits: List<GoodHabit>) :
-    BaseAdapter() {
-
-    override fun getCount(): Int {
-        return habits.size
-    }
-
-    override fun getItem(position: Int): Any {
-        return habits[position]
-    }
-
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val habit = habits[position]
-        val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.activity_habit_item, parent, false)
-
-        val habitName: TextView = view.findViewById(R.id.textHabitName)
-        val habitDescription: TextView = view.findViewById(R.id.textHabitDescription)
-
-        habitName.text = habit.name
-        habitDescription.text = habit.description
-
-        return view
-    }
-}
-
