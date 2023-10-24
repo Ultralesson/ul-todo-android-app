@@ -2,6 +2,7 @@ package com.example.ul_todo_android_app
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -44,6 +45,21 @@ class GuideActivity : AppCompatActivity() {
         toolBar?.setTitleTextColor(ContextCompat.getColor(applicationContext, R.color.whiteSmoke))
 
         actionBar()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        // Check if the orientation changed to landscape
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_landscape) // Use landscape layout
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setContentView(R.layout.activity_guide) // Use portrait layout
+            recreate()
+        }
+    }
+
+    private fun initUI() {
     }
 
     private fun actionBar() {
