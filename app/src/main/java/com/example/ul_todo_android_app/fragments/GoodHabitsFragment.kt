@@ -11,74 +11,69 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ul_todo_android_app.R
-import com.example.ul_todo_android_app.adapters.GoodHabitsAdapter
+import com.example.ul_todo_android_app.adapters.HabitsAdapter
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-data class GoodHabit(
-    val name: String,
-    val description: String
-)
-
 val goodHabits = listOf(
-    GoodHabit(
+    Habit(
         "Morning Meditation",
         "Spend 10 minutes in the morning meditating to start your day with a clear mind and reduced stress."
     ),
-    GoodHabit(
+    Habit(
         "Regular Exercise",
         "Incorporate at least 30 minutes of physical activity into your daily routine to boost your energy and overall health."
     ),
-    GoodHabit(
+    Habit(
         "Healthy Eating",
         "Focus on consuming a balanced diet with plenty of fruits, vegetables, and whole grains to nourish your body."
     ),
-    GoodHabit(
+    Habit(
         "Daily Reading",
         "Dedicate time each day to read a book or informative articles to expand your knowledge and stimulate your mind."
     ),
-    GoodHabit(
+    Habit(
         "Gratitude Journaling",
         "Reflect on and write down things you're thankful for each day to promote positivity and mindfulness."
     ),
-    GoodHabit(
+    Habit(
         "Hydrate Well",
         "Drink an adequate amount of water throughout the day to stay hydrated and support bodily functions."
     ),
-    GoodHabit(
+    Habit(
         "Prioritize Sleep",
         "Aim for 7-8 hours of quality sleep each night to enhance cognitive function and overall well-being."
     ),
-    GoodHabit(
+    Habit(
         "Mindfulness Meditation",
         "Practice mindfulness meditation to increase self-awareness and reduce anxiety."
     ),
-    GoodHabit(
+    Habit(
         "Regular Stretching",
         "Incorporate stretching exercises to maintain flexibility and prevent muscle stiffness."
     ),
-    GoodHabit(
+    Habit(
         "Effective Time Management",
         "Plan your day and prioritize tasks to make the most of your time and reduce stress."
     ),
-    GoodHabit(
+    Habit(
         "Practice Gratitude",
         "Express gratitude to others and yourself regularly to foster positive relationships and self-esteem."
     ),
-    GoodHabit(
+    Habit(
         "Limit Screen Time",
         "Set boundaries on screen time to reduce eye strain and promote face-to-face interactions."
     ),
-    GoodHabit(
+    Habit(
         "Healthy Snacking",
         "Choose nutritious snacks like fruits, nuts, or yogurt to maintain energy levels throughout the day."
     ),
-    GoodHabit(
+    Habit(
         "Random Acts of Kindness",
         "Perform small acts of kindness for others to spread positivity and build strong connections."
     ),
-    GoodHabit(
+    Habit(
         "Learn Something New",
         "Dedicate time to acquire new skills or knowledge to continuously grow and adapt."
     )
@@ -107,11 +102,11 @@ class GoodHabitsFragment : Fragment() {
         val goodHabitsRecyclerView: RecyclerView? = view.findViewById(R.id.goodHabitsRecyclerView)
         goodHabitsRecyclerView?.layoutManager = GridLayoutManager(requireContext(), 2)
 
-        val adapter = GoodHabitsAdapter(requireContext(), goodHabits)
+        val adapter = HabitsAdapter(requireContext(), goodHabits)
 
         // Set the click listener for the adapter
-        adapter.setOnItemClickListener(object : GoodHabitsAdapter.OnItemClickListener {
-            override fun onItemClick(habit: GoodHabit) {
+        adapter.setOnItemClickListener(object : HabitsAdapter.OnItemClickListener {
+            override fun onItemClick(habit: Habit) {
                 showHabitDetailsDialog(habit)
             }
         })
@@ -133,7 +128,7 @@ class GoodHabitsFragment : Fragment() {
     }
 
     @SuppressLint("MissingInflatedId")
-    private fun showHabitDetailsDialog(habit: GoodHabit) {
+    private fun showHabitDetailsDialog(habit: Habit) {
         val dialogBuilder = AlertDialog.Builder(requireActivity())
         val dialogView = layoutInflater.inflate(R.layout.activity_habit_dialog, null)
         dialogBuilder.setView(dialogView)

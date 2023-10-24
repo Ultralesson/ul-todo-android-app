@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ul_todo_android_app.R
-import com.example.ul_todo_android_app.fragments.GoodHabit
+import com.example.ul_todo_android_app.fragments.Habit
 
-class GoodHabitsAdapter(private val context: Context, private val habits: List<GoodHabit>) :
-    RecyclerView.Adapter<GoodHabitsAdapter.ViewHolder>() {
+class HabitsAdapter(private val context: Context, private val habits: List<Habit>) :
+    RecyclerView.Adapter<HabitsAdapter.ViewHolder>() {
 
     interface OnItemClickListener {
-        fun onItemClick(habit: GoodHabit)
+        fun onItemClick(habit: Habit)
     }
 
     private var itemClickListener: OnItemClickListener? = null
@@ -48,7 +48,7 @@ class GoodHabitsAdapter(private val context: Context, private val habits: List<G
         private val habitName: TextView = itemView.findViewById(R.id.textHabitName)
         private val habitDescription: TextView = itemView.findViewById(R.id.textHabitDescription)
 
-        fun bind(habit: GoodHabit) {
+        fun bind(habit: Habit) {
             // Bind data to views here
             habitName.text = habit.name
             habitDescription.text = habit.description

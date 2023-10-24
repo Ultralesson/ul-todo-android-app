@@ -14,13 +14,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="16dp"
-            android:textColor="@color/black"
             android:text="Replace old patterns, welcome new beginnings."
-            android:textSize="18sp"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
-        <GridView
-            android:id="@+id/gridView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/badHabitsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
