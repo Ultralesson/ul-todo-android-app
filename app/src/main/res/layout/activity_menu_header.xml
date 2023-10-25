@@ -41,7 +41,6 @@
             android:textColor="@color/whiteSmoke"
             android:textSize="10dp"
             android:textStyle="italic" />
-
     </LinearLayout>
 
 </LinearLayout>

@@ -33,10 +33,7 @@ import com.example.ul_todo_android_app.constants.StaticTexts
 import com.example.ul_todo_android_app.database.crud.TasksCRUDRepo
 import com.example.ul_todo_android_app.database.crud.UsersCRUDRepo
 import com.example.ul_todo_android_app.database.entities.TasksEntity
-import com.example.ul_todo_android_app.utilities.CustomToastUtility
-import com.example.ul_todo_android_app.utilities.NotificationUtil
-import com.example.ul_todo_android_app.utilities.SessionData
-import com.example.ul_todo_android_app.utilities.ViewUtilities
+import com.example.ul_todo_android_app.utilities.*
 import com.example.ul_todo_android_app.utilities.ViewUtilities.Companion.hideKeyboard
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -47,8 +44,7 @@ import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 data class FilterCriteria(
-    val name: String,
-    var isSelected: Boolean = false
+    val name: String, var isSelected: Boolean = false
 )
 
 class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener,
@@ -150,10 +146,9 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
     }
 
     private fun shouldTitleBeDisplayed() {
+
         TasksCRUDRepo(applicationContext).getTasksForUser(
-            SessionData(applicationContext).getFromSession(
-                SessionStoreTexts.LOGGED_IN_EMAIL
-            )
+            SessionManager.getLoggedInEmail(applicationContext, intent)
         ) {
             if (it[0].tasks.isEmpty()) {
                 txtTitle?.visibility = View.VISIBLE
@@ -180,6 +175,15 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
 
         eleToolBar?.setNavigationOnClickListener {
             eleDrawable.openDrawer(GravityCompat.START)
+
+            // Setting the email on the drawer layout header...
+            val loggedInEmail =
+                SessionData(applicationContext).getFromSession(SessionStoreTexts.LOGGED_IN_EMAIL)
+            if (loggedInEmail != "") {
+                txtUserInfo = findViewById(R.id.txtUserInfo)
+                txtUserInfo?.text =
+                    "Hi, $loggedInEmail"
+            }
         }
 
         eleNavView.setNavigationItemSelectedListener { menuItem ->
@@ -263,9 +267,7 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
         filterOutButton?.setOnClickListener {
             var filteredTasks: List<TasksEntity>?
             TasksCRUDRepo(applicationContext).getTasksForUser(
-                SessionData(applicationContext).getFromSession(
-                    SessionStoreTexts.LOGGED_IN_EMAIL
-                )
+                SessionManager.getLoggedInEmail(applicationContext, intent)
             ) {
                 filteredTasks = it[0].tasks.filter { task ->
                     filterCriteriaList.any { criteria ->
@@ -306,10 +308,10 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
     }
 
     private fun loadTasksOnRecyclerView() {
+        val loggedInEmail = SessionManager.getLoggedInEmail(applicationContext, intent)
+
         TasksCRUDRepo(applicationContext).getTasksForUser(
-            SessionData(applicationContext).getFromSession(
-                SessionStoreTexts.LOGGED_IN_EMAIL
-            )
+            loggedInEmail
         ) {
             val tasksAdapter = TasksAdapter(it[0].tasks, applicationContext, this, this)
             tasksRecyclerView.adapter = tasksAdapter
@@ -361,8 +363,7 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
             activityResultLauncher.launch(intent)
 
             CustomToastUtility(this).showToast(
-                R.layout.activity_custom_toast,
-                "Logged out"
+                R.layout.activity_custom_toast, "Logged out"
             )
         }
 
@@ -393,9 +394,7 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
 
             // Deleting the user from DB
             UsersCRUDRepo(applicationContext).deleteUserByEmail(
-                SessionData(
-                    applicationContext
-                ).getFromSession(SessionStoreTexts.LOGGED_IN_EMAIL)
+                SessionManager.getLoggedInEmail(applicationContext, intent)
             )
 
             val intent = Intent(this, LoadingActivity::class.java)
@@ -439,10 +438,10 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
 
         if (update) {
             if (taskEntity != null) {
+                val loggedInEmail = SessionManager.getLoggedInEmail(applicationContext, intent)
+
                 TasksCRUDRepo(applicationContext).getTask(
-                    SessionData(applicationContext).getFromSession(
-                        SessionStoreTexts.LOGGED_IN_EMAIL
-                    ), taskEntity.task
+                    loggedInEmail, taskEntity.task
                 ) { taskEntity ->
                     txtTitleOnBottomSheet?.text = "Update the task"
                     etvNewTask?.setText(taskEntity.task)
@@ -496,9 +495,7 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
                 val description = etvDescription?.text.toString()
                 val completionDate = txtSetDate?.text.toString()
                 val tags = tags
-                val email = SessionData(applicationContext).getFromSession(
-                    SessionStoreTexts.LOGGED_IN_EMAIL
-                )
+                val email = SessionManager.getLoggedInEmail(applicationContext, intent)
 
                 if (!update) {
                     TasksCRUDRepo(applicationContext).insertTask(
@@ -514,8 +511,7 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
                     )
                     dialog.dismiss()
                     CustomToastUtility(this).showToast(
-                        R.layout.activity_custom_toast,
-                        "Task successfully added"
+                        R.layout.activity_custom_toast, "Task successfully added"
                     )
                 } else {
 
@@ -541,8 +537,7 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
 
                     dialog.dismiss()
                     CustomToastUtility(this).showToast(
-                        R.layout.activity_custom_toast,
-                        "Task updated successfully"
+                        R.layout.activity_custom_toast, "Task updated successfully"
                     )
                 }
 
@@ -620,14 +615,13 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
 
                 // updating the password
                 UsersCRUDRepo(applicationContext).updatePassword(
-                    SessionData(applicationContext).getFromSession(SessionStoreTexts.LOGGED_IN_EMAIL),
+                    SessionManager.getLoggedInEmail(applicationContext, intent),
                     updatePassword.text.toString()
                 )
 
 
                 CustomToastUtility(this).showToast(
-                    R.layout.activity_custom_toast,
-                    "Successfully updated the password"
+                    R.layout.activity_custom_toast, "Successfully updated the password"
                 )
                 dialog.dismiss()
             }
@@ -823,9 +817,7 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
             description = taskValue.description,
             completionDate = taskValue.completionDate,
             tags = tags,
-            userRefEmail = SessionData(applicationContext).getFromSession(
-                SessionStoreTexts.LOGGED_IN_EMAIL
-            ),
+            userRefEmail = SessionManager.getLoggedInEmail(applicationContext, intent),
             inProgress = true,
             done = taskValue.done
         )
@@ -855,14 +847,10 @@ class ToDoActivity : AppCompatActivity(), OnClickListener, OnFocusChangeListener
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (drawableToggle.onOptionsItemSelected(item)) {
-            txtUserInfo = findViewById(R.id.txtUserInfo)
-            txtUserInfo?.text =
-                "Hi, ${SessionData(applicationContext).getFromSession(SessionStoreTexts.LOGGED_IN_EMAIL)}"
-
-            return true
+        return if (drawableToggle.onOptionsItemSelected(item)) {
+            true
         } else {
-            return super.onOptionsItemSelected(item)
+            super.onOptionsItemSelected(item)
         }
     }
 
