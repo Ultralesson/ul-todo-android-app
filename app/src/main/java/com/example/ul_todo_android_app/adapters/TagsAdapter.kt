@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ul_todo_android_app.R
+import com.example.ul_todo_android_app.utilities.CustomToastUtility
 
 class TagsAdapter(
     private val tagsList: List<String>,
@@ -36,6 +37,13 @@ class TagsAdapter(
 
         holder.imgCloseNewTask?.setOnClickListener {
             clickListener?.onCloseTagButtonClick(position)
+        }
+
+        holder.txtTag.setOnClickListener {
+            CustomToastUtility(context).showToast(
+                R.layout.activity_custom_toast,
+                "${holder.txtTag.text} is clicked"
+            )
         }
     }
 
