@@ -39,7 +39,7 @@ class TagsAdapter(
             clickListener?.onCloseTagButtonClick(position)
         }
 
-        holder.txtTag.setOnClickListener {
+        holder.itemView.setOnClickListener {
             CustomToastUtility(context).showToast(
                 R.layout.activity_custom_toast,
                 "${holder.txtTag.text} is clicked"
