@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ul_todo_android_app.R
-import com.example.ul_todo_android_app.utilities.CustomToastUtility
+import com.google.android.material.snackbar.Snackbar
 
 class TagsAdapter(
     private val tagsList: List<String>,
@@ -40,10 +40,15 @@ class TagsAdapter(
         }
 
         holder.itemView.setOnClickListener {
-            CustomToastUtility(context).showToast(
-                R.layout.activity_custom_toast,
-                "${holder.txtTag.text} is clicked"
-            )
+            Snackbar.make(
+                holder.itemView,
+                "${holder.txtTag.text} is clicked",
+                Snackbar.LENGTH_LONG
+            ).setAction(
+                "Ok"
+            ) {
+                // If the Ok button is pressed, perform the action
+            }.show()
         }
     }
 
